@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="container-xl tw-pt-28">
+   <div class="d-flex justify-content-center">
+      <div class="col-5">
+         {% if request.user.is_authenticated %}
+         <p>you've logged in. Do you want to <a href="{% url 'accounts:logout' %}">log out</a>?</p>
+         
+         {% else %}
+         <form action="." method="post" class="my-2">
+            {% csrf_token %}
+            <fieldset>
+               <legend>Login:</legend>
+               {% if form.errors %}
+               <div class="alert alert-primary" role="alert">
+                  Please enter a correct username and password. Note that both fields may be case-sensitive.
+               </div>
+            {% endif %}
+            <div class="py-2">
+               <label for="username" class="form-label">{{ form.username.label_tag }}</label>
+               {% render_field form.username class+='form-control' name='username' %}
+            </div>
+            <div class="py-2">
+               <label for="password" class="form-label">{{ form.password.label_tag }}</label>
+               {% render_field form.password class+='form-control' name='password' %}
+            </div>
+            <button type="submit" class="btn btn-outline-success px-3 mt-3">login</button>
+            </fieldset>
+         </form>
+         <div class="py-3">
+            <a href="{% url 'accounts:password_reset' %}" class="tw-text-lime-900 tw-font-medium">Forgot your password?</a>
+         </div>
+   
+         {% endif %}
+      </div>
+   </div>
+</div>
+
+
+{% endblock %}

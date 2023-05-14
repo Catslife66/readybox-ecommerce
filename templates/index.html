@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ready Box-Your convenient food No.1 choice{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid d-flex" id="index-main">
+    <main class="container-xl text-center d-flex flex-column flex-fill justify-content-center align-self-center">
+        <h1 class="tw-text-gray-200 tw-text-7xl">Perfect Healthy Diet</h1>
+        <p class="lead tw-text-gray-200 tw-text-xl tw-font-medium">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum laudantium reiciendis aspernatur quibusdam neque asperiores magni, nam enim accusamus labore perspiciatis deserunt nesciunt ratione adipisci omnis ullam officia praesentium consequuntur.</p>
+        <p class="lead">
+            <a href="#" class="btn btn-lg btn-light fw-bold border-white bg-white">Learn more</a>
+        </p>
+    </main>
+</div>
+  
+  
+<div class="container-xl px-4 py-5" id="custom-cards">
+    <h2 class="pb-2 text-center">Fresh from the farms</h2>
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg card-bg" style="background-image: url('../static/image/veg.jpg');">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h3 class="pt-5 mt-5 display-6 lh-1 fw-bold">Short title, long jacket</h3>
+            <ul class="d-flex list-unstyled mt-auto tw-pt-20">
+              <li class="me-auto">
+                <img src="{% static 'image/veg.jpg' %}" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+              </li>
+              <li class="d-flex align-items-center me-3">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                <small class="tw-font-medium">Earth</small>
+              </li>
+              <li class="d-flex align-items-center">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                <small class="tw-font-medium">3d</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg card-bg" style="background-image: url('../static/image/veg3.jpg');">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h3>
+            <ul class="d-flex list-unstyled mt-auto tw-pt-20">
+              <li class="me-auto">
+                <img src="{% static 'image/veg.jpg' %}" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+              </li>
+              <li class="d-flex align-items-center me-3">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                <small class="tw-font-medium">Earth</small>
+              </li>
+              <li class="d-flex align-items-center">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                <small class="tw-font-medium">3d</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg card-bg" style="background-image: url('../static/image/veg2.jpg');">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h3>
+            <ul class="d-flex list-unstyled mt-auto tw-pt-20">
+              <li class="me-auto">
+                <img src="{% static 'image/veg.jpg' %}" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+              </li>
+              <li class="d-flex align-items-center me-3">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                <small class="tw-font-medium">Earth</small>
+              </li>
+              <li class="d-flex align-items-center">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                <small class="tw-font-medium">3d</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="my-5">
+  <div class="p-5 text-center tw-bg-lime-100/50">
+    <div class="container py-5">
+      <h1 class="text-body-emphasis py-5">Full-width jumbotron</h1>
+      <p class="col-lg-8 mx-auto lead">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam animi, minima laborum eum odit repudiandae assumenda eligendi. Earum illum vero temporibus sunt! In eius quaerat ab quos saepe perferendis! Earum.
+      </p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

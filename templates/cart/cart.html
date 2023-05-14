@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-xl tw-pt-28 mt-5">
+    {% if items %}
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Items</th>
+                    <th scopr="col">Portion</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr id="item-row-{{ item.id }}">
+                        <td>{{ item.menu }}</td>
+                        <td>{{ item.serving.title|title }}</td>
+                        <td>{{ item.serving.price }}</td>
+                        <td class="qty">
+                            <button class="btn btn-outline-dark remove item-btn" data-itemId="{{ item.id }}" data-action="remove">-</button>
+                            <span class="d-flex align-items-center" id="item-{{item.id}}">{{ item.quantity }}</span>
+                            <button class="btn btn-outline-dark add item-btn" data-itemId="{{ item.id }}" data-action="add">+</button>
+                        </td>
+                        <td id="subtotal-{{ item.id }}">£ {{ item.sub_total|floatformat:2 }}</td>
+                    </tr>
+                {% endfor %}
+                <td colspan="3"></td>
+                <td colspan="2" class="text-center fw-bold total">Totol: £ {{ total|floatformat:2 }}</td>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-around">  
+            <a href="{% url 'menu:menu_list' %}" class="btn btn-outline-dark" id="continue">Continue shopping</a>
+            <a href="{% url 'payment:check_out' %}" class="btn btn-dark">Check out</a>        
+        </div>  
+    </div>
+    {% else %}
+    <div>
+        You currently have no items in the cart. <a href="{% url 'menu:menu_list' %}">Go to shop.</a>
+    </div>
+    {% endif %}
+</div>
+
+<script src="{% static 'js/cart/cart.js' %}"></script>
+
+{% endblock %}

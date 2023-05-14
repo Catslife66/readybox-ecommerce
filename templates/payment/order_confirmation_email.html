@@ -1,0 +1,12 @@
+<html>
+  <body>
+    <p>Hi {{ user.username }},</p>
+    <p>Your order no.{{ order.id }} has been confirmed.</p>
+    <ul>
+      {% for item in order_items %}
+        <li>{{ item.menu.title }} - {{ item.serving.title }} - {{ item.sub_price }} x {{ item.quantity }}</li>
+      {% endfor %}
+    </ul>
+    <p>Total: {{ order.total_amount }}</p>
+  </body>
+</html>

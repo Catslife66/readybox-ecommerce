@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Confirm your payment{% endblock %}
+
+{% block content %}
+
+<div class="container-xl tw-pt-28">
+    <div class="d-flex flex-row">
+        <div class="col-lg-6">
+            <!-- stripe payment form -->
+            <form id="payment-form">
+                <div id="shipping-address">
+                  <legend>Shipping Detail: </legend>
+                  <label for="shipping_name">Full name:</label>
+                  <input type="text" name="shipping_name" id="shipping_name" class='form-control mb-1' required>
+                  
+                  <label for="shipping_email">Email:</label>
+                  <input type="email" name="shipping_email" id="shipping_email" class='form-control mb-1' required>
+                  
+                  <label for="address1">Address 1:</label>
+                  <input type="text" name="address1" id="address1" class='form-control mb-1' required>
+
+                  <label for="address2">Address 2: (optional)</label>
+                  <input type="text" name="address2" id="address2" class='form-control mb-1'>
+                  
+                  <label for="city">City/Town:</label>
+                  <input type="text" name="city" id="city" class='form-control mb-1' required>
+                  
+                  <label for="postcode">Postcode:</label>
+                  <input type="text" name="postcode" id="postcode" class='form-control mb-1' required>
+
+                  <label for="mobile">Mobile:</label>
+                  <input type="text" name="mobile" id="mobile" class='form-control mb-1'required>
+                </div>
+
+                <legend>Payment Detail:</legend>
+                <div id="billing-address">
+                    <!--Stripe.js injects the Address Element-->
+                </div>
+                <div id="payment-element">
+                    <!--Stripe.js injects the Payment Element-->
+                </div>
+                <div class="row">
+                    <button id="submit" class="btn btn-primary">
+                        <div class="spinner hidden" id="spinner"></div>
+                        <span id="button-text">Pay now</span>
+                        </button>
+                </div>
+                <div id="payment-message" class="hidden"></div>
+            </form>
+        </div>
+
+        <div class="col-lg-4 ms-5 border">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-primary">Order summary</span>
+                <span class="badge bg-primary rounded-pill">N</span>
+            </h4>
+              <ul class="list-group mb-3">
+                {% for item in items %}
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                  <div>
+                    <h6 class="my-0">{{ item.menu }}</h6>
+                    <img src="{{ item.menu.image.url }}" alt="" width="80" height="80">
+                  </div>
+                  <div>
+                    <span class="text-body-secondary">$12</span>
+                    <span>quantity: {{ item.quantity }}</span>
+                  </div>
+                </li>
+                {% endfor %}
+              </ul>
+        </div>
+    </div>
+</div>
+<script>
+    const CSRF_TOKEN = '{{ csrf_token }}';
+</script>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{% static 'js/payment/checkout.js' %}" defer></script>
+
+{% endblock %}
+
+

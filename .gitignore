@@ -1,0 +1,39 @@
+# Django
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+*.pot
+*.pyc
+
+# Local development settings
+*.env
+*.log
+*.sqlite3
+
+# Logs and generated files
+*.log
+*.pot
+*.po
+*.mo
+
+# Static files and media
+static/
+media/
+
+
+# Dependencies
+venv/
+node_modules/
+dist/
+build/
+
+
+# Compiled source
+*.exe
+
+# Others
+stripe.txt
+backup.txt
+*.json
+*.js

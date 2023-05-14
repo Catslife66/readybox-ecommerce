@@ -1,0 +1,87 @@
+{% extends 'sidebar.html' %}
+{% load widget_tweaks %}
+
+{% block title %}My account{% endblock %}
+
+{% block side %}
+<form action="" method="post" class="my-2">
+  {% csrf_token %}
+  <fieldset>
+      {% if messages.success %}
+          <div class="alert alert-success mt-1">
+              {{ messages.success }}
+          </div>
+      {% endif %}
+      <legend>Personal Details:</legend>
+      <div class="py-1">
+        <label for="username" class="form-label mt-3">{{ form.username.label_tag }}</label>
+      {% render_field form.username class+='form-control' name='username' %}
+      {% if form.username.errors %}
+          <div class="alert alert-danger mt-1">
+              {{ form.username.errors }}
+          </div>
+      {% endif %}
+      </div>
+
+      <div class="py-1">
+        <label for="email" class="form-label mt-3">{{ form.email.label_tag }}</label>
+      {% render_field form.email class+='form-control' name='email'%}
+      {% if form.email.errors %}
+          <div class="alert alert-danger mt-1">
+              {{ form.email.errors }}
+          </div>
+      {% endif %}
+      </div>
+      
+      <div class="py-1">
+        <label for="first_name" class="form-label mt-3">{{ form.first_name.label_tag }}</label>
+      {% render_field form.first_name class+='form-control' name='first_name' placeholder='Optional' %}
+      </div>
+      
+      <div class="py-1">
+        <label for="last_name" class="form-label mt-3">{{ form.last_name.label_tag }}</label>
+      {% render_field form.last_name class+='form-control' name='last_name' placeholder='Optional' %}
+      </div>
+
+      <div class="py-1">
+        <label for="mobile" class="form-label mt-3">{{ form.mobile.label_tag }}</label>
+        {% render_field form.mobile class+='form-control' name='mobile' placeholder='Optional' %}
+      </div>
+  </fieldset>
+      
+  <div class="tw-bg-lime-900 my-5" style="height:2px"></div>
+  <fieldset>
+      <legend>Password Details:</legend>
+      <div class="py-1">
+        <label for="old_password" class="form-label mt-3">{{ form.old_password.label_tag }}</label>
+      {% render_field form.old_password class+='form-control' name='old_password'%}
+      {% if form.old_password.errors %}
+          <div class="alert alert-danger mt-1">
+              {{ form.old_password.errors }}
+          </div>
+      {% endif %}
+      </div>
+
+      <div class="py-1">
+        <label for="new_password1" class="form-label mt-3">{{ form.new_password1.label_tag }}</label>
+      {% render_field form.new_password1 class+='form-control' name='new_password1'%}
+      {% if form.new_password1.errors %}
+          <div class="alert alert-danger mt-1">
+              {{ form.new_password1.errors }}
+          </div>
+      {% endif %}
+      </div>
+
+      <div class="py-1">
+        <label for="new_password2" class="form-label mt-3">{{ form.new_password2.label_tag }}</label>
+      {% render_field form.new_password2 class+='form-control' name='new_password2'%}
+      {% if form.new_password2.errors %}
+          <div class="alert alert-danger mt-1">
+              {{ form.new_password2.errors }}
+          </div>
+      {% endif %}
+      </div>
+  </fieldset>
+  <button class="btn btn-success px-3 mt-3" type="submit">Save the change</button>
+</form>
+{% endblock %}

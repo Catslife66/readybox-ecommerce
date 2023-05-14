@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}Search results{% endblock %}
+
+{% block content %}
+
+<div class="container-xl tw-pt-28" id="menu-list">
+    <div class="row justify-content-center my-5">
+    {% for menu in obj_lists %}
+    <div class="col-xl-4 col-md-6 col-sm-8 p-3">
+        <div class="card">
+            <div data-bs-toggle="modal" 
+                data-bs-target="#menu-{{ menu.id }}"
+                hx-get="{% url 'menu:menu_detail' menu.slug %}"
+                hx-trigger="click"
+                hx-target="#menu-{{ menu.id }}"
+                hx-swap="outerHTML">
+                <img src="{{ menu.image.url }}" class="card-img-top" alt="menu-image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ menu.title }}</h5>
+                    <p class="card-text pt-2">{{ menu.description|slice:":80" }}......</p>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-8 col-md-7 col-sm-7">
+                        <select name="portion" class="form-select px-2" id="{{ menu.slug }}-serving">
+                            {% for serving in menu.servings.all %}
+                                <option value="{{ serving.id }}">{{ serving.get_title_display }} - £ {{ serving.price }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-4 col-md-5 col-sm-5 d-flex justify-content-center">
+                        <button class="btn bg-success text-white item-btn" data-slug="{{menu.slug}}">Add to cart</button>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+        {% include 'menu/menu_detail_modal.html' with menu=menu %}
+    {% endfor %}
+    </div>
+</div>
+
+<script src="{% static 'js/menu/menuList.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'sidebar.html' %}
+
+{% block title %}Order details{% endblock %}
+
+{% block side %}
+   
+<div class="container">
+    <div class="d-flex flex-column p-5 pt-3">
+        <div class="border-bottom d-flex flex-row justify-content-between px-2">
+            <h5>Order No.: {{ order.id }}</h5>
+            <p>Order at {{ order.updated|date:"d M, Y, H:s" }}</p>
+        </div>
+        <div>
+            {% for item in order_items %}
+            <div class="row py-3 border-bottom">
+                <div class="col-3">
+                    <img src="{{ item.menu.image.url }}" alt="" class="img-thumbnail" width="200px" height="200px">
+                </div>
+                <div class="col-6 d-flex flex-column">
+                    <span><a href="{% url 'menu:menu_detail' item.menu.slug %}">{{ item.menu.title }}</a></span>
+                    <div class="d-flex flex-row">
+                        <span class="p-1">£{{ item.serving.price}}</span>
+                        <span class="p-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg></span>
+                        <span class="p-1">{{ item.quantity }}</span>
+                    </div>
+                </div>
+                <div class="col-2 d-flex flex-column">
+                    <button class="btn btn-success my-2">Buy again</button>
+                    <button class="btn btn-outline-success">Review</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+

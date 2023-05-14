@@ -1,0 +1,27 @@
+{% extends 'sidebar.html' %}
+
+{% block title %}My orders{% endblock %}
+
+{% block side %}
+
+{% if orders %}
+    <ol class="list-group list-group-numbered">
+        {% for order in orders %}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+            <div class="fw-bold"><a href="{% url 'orders:order_detail' order.pk %}" class="tw-text-lime-900">Order: {{ order }}</a></div>
+            Send to: {{ order.shipping }}
+            </div>
+            <div class="me-2 ms-auto">
+            <div class="row"><span class="badge tw-bg-lime-900 rounded-pill">{{order.order_status}}</span></div>
+            
+            <div class="row">Total £ {{ order.total|floatformat:2 }}</div>
+            </div>
+        </li>
+        {% endfor %}
+    </ol>
+    {% else %}
+    <p>You currently have no orders.</p>
+{% endif %}
+
+{% endblock %}

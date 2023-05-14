@@ -1,0 +1,52 @@
+<div class="modal fade modal-lg" id="menu-{{ menu.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content modal-dialog-scrollable">
+        <img src="{{ menu.image.url }}" alt="" width="800px">
+        <div class="modal-header border-bottom-0">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ menu.title }}</h1>
+            <span class="badge tw-bg-lime-900 ms-3">{{ menu.cuisine }}</span>
+            <button type="button" id="btn-close" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+        </div>
+        <div class="modal-body pt-0">
+            <span class="badge text-bg-warning rounded-pill">{{ menu.type }}</span>
+            <p class="pt-3">{{ menu.description }}</p>
+        <hr>
+            <div class="fs-4 mb-3">Ingredients:</div>
+            <ul>
+                <div class="row mt-3">
+                    {% for ingredient in menu.get_ingredients %}
+                    <div class="col-5">
+                        <div class="row mb-2">
+                            <li class="list-group d-flex flex-row">
+                                <img src="{{ ingredient.image.url }}" alt="{{ ingredient.title }}">
+                                <p class="p-3 text-center">{{ ingredient.title }}</p>
+                            </li>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </ul>
+        <hr>
+            <div class="fs-4 mb-3">Nutritional Information:</div>    
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                      <th scope="col">Nutritions</th>
+                      <th scope="col">per Serving</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for nu in menu.get_nutritions %}
+                        <tr>
+                            <th scope="row">{{ nu.title }}</th>
+                            <td>{{ nu.figure }}{{ nu.unit }}</td>
+                        </tr>
+                    {% endfor %}
+            </table>
+        </div>
+        <div class="modal-footer">
+            <a href="{% url 'menu:menu_detail' menu.slug %}">View more-></a>
+        </div>
+    </div>
+    </div>
+</div>

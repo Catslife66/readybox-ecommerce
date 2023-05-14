@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Order placed{% endblock %}
+
+
+{% block content %}
+
+<div class="container-lg tw-pt-28">
+    <div class="alert alert-success" role="alert">
+        Order placed successfully.
+    </div>
+    
+    <a href="{% url 'orders:orders' %}" class="tw-text-lime-900">View all my orders</a>
+</div>
+
+{% endblock %}

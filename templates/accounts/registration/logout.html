@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-xl tw-pt-28">
+    {% if request.user.is_authenticated %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Are you sure to log out?<p>
+        <button class="btn btn-outline-primary" type="submit">Log out</button>
+    </form>
+    {% else %}
+        <p>Do you want to <a href="{% url 'accounts:login' %}" class="tw-text-lime-900 tw-font-medium">log in</a>?</p>
+    {% endif %}
+</div>
+
+{% endblock %}
