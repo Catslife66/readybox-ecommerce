@@ -94,7 +94,6 @@ def add_to_cart(request, slug):
 
 def search(request):
     query = request.GET.get('q')
-    print(query)
-    obj_lists = Menu.objects.search(query)
+    obj_lists = Menu.objects.search(query).distinct()
     context = {'obj_lists': obj_lists}
     return render(request, 'menu/search_result.html', context)

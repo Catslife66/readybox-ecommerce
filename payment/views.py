@@ -18,7 +18,8 @@ from orders.models import Order, OrderItem
 @login_required
 def check_out(request):
     items = CartItem.objects.filter(user_id=request.user.id)
-    context = {'items': items}
+    qty_sum = items.aggregate(total_quantity=Sum('quantity'))['total_quantity']
+    context = {'items': items, 'qty_sum': qty_sum}
     return render(request, 'payment/check_out.html', context)
 
 
